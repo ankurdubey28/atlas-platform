@@ -1,23 +1,73 @@
 # atlas-platform
 
-atlas-platform is a production-oriented infrastructure platform designed to simulate real-world service deployment and reliability workflows.
+**atlas-platform** is a production-oriented infrastructure project built to simulate how real-world services are developed, deployed, and operated.
 
-The project focuses on the complete lifecycle of a service — from local development to production deployment — with an emphasis on containerization, CI/CD automation, orchestration, and observability.
+The goal of this project is to understand the complete lifecycle of a backend service — starting from local development to production deployment — while focusing on reliability, automation, and observability.
 
-Instead of treating infrastructure as an afterthought, this project approaches it as a first-class system, covering how services are built, deployed, monitored, and debugged in a production-like environment.
+---
 
-## What is a platform 
-- A platform refers to layer of infrastructure + tools + abstractions use to build , deploy and operate applications.
+## What is a Platform
 
-## What this platform covers
+A platform is a combination of infrastructure, tools, and abstractions used to build, deploy, and operate applications efficiently.
 
-- Service development (Go-based API)
+---
+
+## What this Project Covers
+
+- Building a REST API (Go)
 - Containerization using Docker
+- Local development setup
 - CI/CD pipeline setup
-- Deployment to Kubernetes
-- GitOps-based delivery (ArgoCD)
+- Deployment on Kubernetes
+- GitOps-based delivery using ArgoCD
 - Observability (metrics, logs, alerts)
-- Debugging real-world failure scenarios
+- Debugging production-like scenarios
 
+---
 
-> This README will be continuously updated as the project evolves.
+## Project Structure
+
+```
+atlas-platform/
+├── api/                # Go REST API
+├── docker/             # Docker related files
+├── k8s/                # Kubernetes manifests
+├── helm/               # Helm charts (to be added)
+├── argocd/             # GitOps configs (to be added)
+├── ci/                 # CI pipeline configs
+└── observability/      # Monitoring setup (to be added)
+```
+
+---
+
+## Progress 
+
+- [x] REST API server
+- [x] Docker containerization
+- [ ] Local development setup
+- [ ] CI pipeline
+- [ ] Bare metal deployment
+- [ ] Kubernetes cluster setup
+- [ ] Kubernetes deployment
+- [ ] Helm charts
+- [ ] ArgoCD setup
+- [ ] Observability stack
+- [ ] Dashboards & alerts
+
+---
+
+## Tech Stack
+
+- Language: Go
+- Containerization: Docker
+- Orchestration: Kubernetes
+- CI/CD: (to be added)
+- GitOps: ArgoCD (planned)
+- Observability: Prometheus, Grafana (planned)
+
+---
+
+## Note
+
+This project is being built incrementally as part of an SRE learning journey.  
+The README will be updated as new components are added.
