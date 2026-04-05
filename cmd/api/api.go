@@ -1,20 +1,35 @@
-package main
+package api
 
 import (
 	"log"
 	"net/http"
+	"time"
 
+	"github.com/ankurdubey28/atlas-platform/internal/store"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/joho/godotenv"
 )
 
-func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading env file")
-	}
+type app struct {
+	config Config
+	store  *store.Storage
+}
 
+type Config struct {
+	addr   string
+	db     dbConfig
+	env    string
+	apiURL string
+}
+
+type dbConfig struct {
+	addr         string
+	maxOpenConns int
+	maxIdleConns int
+	maxIdleTime  string
+}
+
+func (app *app) mount() http.Handler {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
@@ -26,8 +41,20 @@ func main() {
 		}
 	})
 
-	err = http.ListenAndServe(":3000", r)
-	if err != nil {
-		return
+	return r
+}
+
+func (app *app) run(mux http.Handler) error {
+	server := http.Server{
+		Addr:         app.config.addr,
+		Handler:      mux,
+		WriteTimeout: time.Second * 30,
+		ReadTimeout:  time.Second * 10,
+		IdleTimeout:  time.Minute,
 	}
+
+	if err := server.ListenAndServe(); err != nil {
+		log.Fatalf("Error running server: %s", err.Error())
+	}
+	return nil
 }
