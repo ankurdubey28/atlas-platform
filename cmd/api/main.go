@@ -4,6 +4,7 @@ import (
 	"github.com/ankurdubey28/atlas-platform/internal/db"
 	"github.com/ankurdubey28/atlas-platform/internal/env"
 	"github.com/ankurdubey28/atlas-platform/internal/store"
+	"go.uber.org/zap"
 )
 
 func main() {
@@ -27,9 +28,13 @@ func main() {
 		return
 	}
 
+	// setup logger
+	logger := zap.Must(zap.NewProduction()).Sugar() // sugar logger basically wraps logger to give less verbose api
+
 	application := app{
 		config: cfg,
 		store:  store.NewStorage(db.DB),
+		logger: logger,
 	}
 	mux := application.mount()
 	err = application.run(mux)

@@ -8,11 +8,13 @@ import (
 	"github.com/ankurdubey28/atlas-platform/internal/store"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"go.uber.org/zap"
 )
 
 type app struct {
 	config Config
 	store  *store.Storage
+	logger *zap.SugaredLogger
 }
 
 type Config struct {
