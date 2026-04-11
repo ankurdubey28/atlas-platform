@@ -16,10 +16,11 @@ type app struct {
 }
 
 type Config struct {
-	addr   string
-	db     dbConfig
-	env    string
-	apiURL string
+	addr    string
+	db      dbConfig
+	env     string
+	apiURL  string
+	version string
 }
 
 type dbConfig struct {
@@ -33,13 +34,7 @@ func (app *app) mount() http.Handler {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
-	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(200)
-		_, err := w.Write([]byte("healthy"))
-		if err != nil {
-			return
-		}
-	})
+	r.Get("/health", app.healthCheckHandler)
 
 	return r
 }

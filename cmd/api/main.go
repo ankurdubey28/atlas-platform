@@ -1,11 +1,9 @@
 package main
 
 import (
-	"context"
-
+	"github.com/ankurdubey28/atlas-platform/internal/db"
 	"github.com/ankurdubey28/atlas-platform/internal/env"
 	"github.com/ankurdubey28/atlas-platform/internal/store"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 func main() {
@@ -17,23 +15,21 @@ func main() {
 		maxIdleTime:  "30",
 	}
 	cfg := Config{
-		addr:   ":3000",
-		db:     dbCfg,
-		env:    env.GetString("ENV", "dev"),
-		apiURL: env.GetString("EXTERNAL_URL", "localhost:8080"),
+		addr:    ":3000",
+		db:      dbCfg,
+		env:     env.GetString("ENV", "dev"),
+		apiURL:  env.GetString("EXTERNAL_URL", "localhost:8080"),
+		version: env.GetString("VERSION", "v1"),
 	}
 
-	// create a pool
-	pool, err := pgxpool.New(context.Background(), dbCfg.addr)
+	err := db.Connect()
 	if err != nil {
 		return
 	}
 
-	defer pool.Close()
-
 	application := app{
 		config: cfg,
-		store:  store.NewStorage(pool),
+		store:  store.NewStorage(db.DB),
 	}
 	mux := application.mount()
 	err = application.run(mux)
