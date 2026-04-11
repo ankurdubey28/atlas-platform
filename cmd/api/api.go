@@ -38,6 +38,17 @@ func (app *app) mount() http.Handler {
 
 	r.Get("/health", app.healthCheckHandler)
 
+	r.Route("/v1/users", func(r chi.Router) {
+		r.Post("/", app.createUserHandler)
+		r.Get("/", app.getAllUsersHandler)
+
+		r.Route("/{id}", func(r chi.Router) {
+			r.Get("/", app.getUserByIdHandler)
+			r.Patch("/", app.updateUserHandler)
+			r.Delete("/", app.deleteUserHandler)
+		})
+	})
+
 	return r
 }
 

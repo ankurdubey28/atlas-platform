@@ -11,12 +11,12 @@ import (
 )
 
 type User struct {
-	Id        pgtype.UUID
-	Name      string
-	Age       int
-	Email     string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	Id        pgtype.UUID `json:"id"`
+	Name      string      `json:"name"`
+	Age       int         `json:"age"`
+	Email     string      `json:"email"`
+	CreatedAt time.Time   `json:"createdAt"`
+	UpdatedAt time.Time   `json:"updatedAt"`
 }
 
 type UserStore struct {
