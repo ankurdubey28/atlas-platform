@@ -96,8 +96,12 @@ func (app *app) deleteUserHandler(w http.ResponseWriter, r *http.Request) {
 		default:
 			app.internalServerError(w, r, err)
 		}
+		return
 	}
-
+	if err := app.jsonResponse(w, http.StatusOK, "user deleted successfully"); err != nil {
+		app.internalServerError(w, r, err)
+		return
+	}
 }
 
 type UpdateUserPayload struct {

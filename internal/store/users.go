@@ -114,9 +114,14 @@ func (s *UserStore) Delete(ctx context.Context, id pgtype.UUID) error {
      DELETE FROM users
      WHERE id=$1
 `
-	err := s.db.QueryRow(ctx, query, id)
+	cmdTag, err := s.db.Exec(ctx, query, id)
 	if err != nil {
+		return err
+	}
+
+	if cmdTag.RowsAffected() == 0 {
 		return pgx.ErrNoRows
 	}
+
 	return nil
 }

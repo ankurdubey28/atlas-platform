@@ -16,7 +16,7 @@ func main() {
 		maxIdleTime:  "30",
 	}
 	cfg := Config{
-		addr:    ":3000",
+		addr:    env.GetString("PORT", ":3030"),
 		db:      dbCfg,
 		env:     env.GetString("ENV", "dev"),
 		apiURL:  env.GetString("EXTERNAL_URL", "localhost:8080"),

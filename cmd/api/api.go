@@ -1,7 +1,8 @@
 package main
 
 import (
-	"log"
+	"errors"
+	"net"
 	"net/http"
 	"time"
 
@@ -60,9 +61,16 @@ func (app *app) run(mux http.Handler) error {
 		ReadTimeout:  time.Second * 10,
 		IdleTimeout:  time.Minute,
 	}
-
-	if err := server.ListenAndServe(); err != nil {
-		log.Fatalf("Error running server: %s", err.Error())
+	ln, err := net.Listen("tcp", app.config.addr)
+	if err != nil {
+		app.logger.Error("Error Launching Server")
+		return err
 	}
+	app.logger.Infof("Server started on %s", app.config.addr)
+	err = server.Serve(ln)
+	if errors.Is(err, http.ErrServerClosed) {
+		return err
+	}
+	app.logger.Infof("Server shutting down gracefully")
 	return nil
 }

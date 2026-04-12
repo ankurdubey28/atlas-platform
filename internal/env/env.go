@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	err := godotenv.Load()
+	err := godotenv.Load("C:\\Users\\ASUS\\GolangProjects\\atlas-platform\\.env")
 	if err != nil {
 		log.Println("No .env file found")
 	}
