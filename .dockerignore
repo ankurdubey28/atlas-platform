@@ -1,0 +1,19 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+*.iml
+
+# Documentation
+README.md
+docs
+
+# Environment
+.env
+
+# Development tools
+.air.toml
+
+
