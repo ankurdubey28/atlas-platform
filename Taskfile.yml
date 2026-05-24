@@ -1,0 +1,30 @@
+
+version: '3'
+
+vars:
+  PLATFORM: linux/amd64
+  IMAGE_NAME: atlas-platform
+  CONTAINER_NAME: atlas-platform
+  TAG: 1.0.0
+
+tasks:
+  build-linux-amd64:
+    desc: build image for linux/amd64 architecture
+    cmds:
+      - |
+        docker buildx build \
+          --platform {{.PLATFORM}} \
+          -t {{.IMAGE_NAME}}:{{.TAG}} \
+          .
+    silent: true
+
+  run-container:
+    desc: run container for image {{.PLATFORM}}
+    cmds:
+      - | 
+        docker run --rm \
+        --name {{.CONTAINER_NAME}} \
+        -p 3030:3030 \
+        -it \
+        --env-file .{{.HOME}}/.env \
+        {{.IMAGE_NAME}}:{{.TAG}}
