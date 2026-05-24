@@ -53,7 +53,7 @@ Check the [Project Roadmap](#project-roadmap) to see where things currently stan
 | # | Milestone | Status |
 |---|---|---|
 | 1 | Create a simple REST API Webserver | ✅ Done |
-| 2 | Containerise REST API | ⬜ Upcoming |
+| 2 | Containerise REST API | ✅  Upcoming |
 | 3 | Setup one-click local development setup | ⬜ Upcoming |
 | 4 | Setup a CI pipeline | ⬜ Upcoming |
 | 5 | Deploy on bare metal | ⬜ Upcoming |
