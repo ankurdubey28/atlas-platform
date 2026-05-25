@@ -11,6 +11,8 @@ RUN --mount=type=cache,target=/go/pkd/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     go mod download
 
+RUN go install github.com/pressly/goose/v3/cmd/goose@latest
+
 COPY . .
 
 RUN go build \

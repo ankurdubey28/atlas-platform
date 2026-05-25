@@ -1,0 +1,59 @@
+services:
+  api:
+    build:
+      context: .
+      platforms:
+        - linux/amd64
+    image: atlas-platform:1.0.0
+    ports:
+      - "3030:3030"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3030/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: api_db
+    volumes:
+      - db_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d api_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+
+  migrate:
+    image: atlas-platform:1.0.0
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    entrypoint:
+      [
+        "goose",
+        "-dir",
+        "/app/cmd/migrate",
+        "postgres",
+        "host=postgres user=admin password=pass dbname=api_db sslmode=disable",
+        "up"
+      ]
+    restart: "no"
+
+
+
+volumes:
+  db_data:
