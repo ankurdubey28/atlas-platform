@@ -40,17 +40,11 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    env_file:
-      - .env
-    entrypoint:
-      [
-        "goose",
-        "-dir",
-        "/app/cmd/migrate",
-        "postgres",
-        "host=postgres user=admin password=pass dbname=api_db sslmode=disable",
-        "up"
-      ]
+    environment:
+      GOOSE_DRIVER: postgres
+      GOOSE_DBSTRING: postgresql://admin:pass@postgres:5432/api_db?sslmode=disable
+      GOOSE_MIGRATION_DIR: /app/cmd/migrate/migrations
+    entrypoint: [ "/goose", "up" ]
     restart: "no"
 
 
