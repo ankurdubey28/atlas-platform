@@ -20,7 +20,7 @@ tasks:
     cmd: docker compose up -d postgres
 
   apply-migrations:
-    desc: apply goose migrations by starting container
+    desc: apply goose migrations by starting building image and starting container
     cmd: docker compose run --rm migrate
 
 

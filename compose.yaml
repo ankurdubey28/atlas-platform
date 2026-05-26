@@ -2,6 +2,7 @@ services:
   api:
     build:
       context: .
+      target: api
       platforms:
         - linux/amd64
     image: atlas-platform:1.0.0
@@ -36,7 +37,11 @@ services:
 
 
   migrate:
-    image: atlas-platform:1.0.0
+    build:
+      context: .
+      target: migrate
+      platforms:
+        - linux/amd64
     depends_on:
       postgres:
         condition: service_healthy
