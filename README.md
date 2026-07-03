@@ -53,16 +53,15 @@ Check the [Project Roadmap](#project-roadmap) to see where things currently stan
 | # | Milestone | Status |
 |---|---|---|
 | 1 | Create a simple REST API Webserver | ✅ Done |
-| 2 | Containerise REST API | ✅  Upcoming |
-| 3 | Setup one-click local development setup | ⬜ Upcoming |
-| 4 | Setup a CI pipeline | ⬜ Upcoming |
-| 5 | Deploy on bare metal | ⬜ Upcoming |
-| 6 | Setup Kubernetes cluster | ⬜ Upcoming |
-| 7 | Deploy in Kubernetes | ⬜ Upcoming |
-| 8 | Deploy using Helm Charts | ⬜ Upcoming |
-| 9 | Setup GitOps with ArgoCD | ⬜ Upcoming |
-| 10 | Setup observability stack | ⬜ Upcoming |
-| 11 | Configure dashboards & alerts | ⬜ Upcoming |
+| 2 | Containerise REST API | ✅ Done |
+| 3 | Setup one-click local development setup | ✅ Done  |
+| 4 | Setup a CI pipeline | ✅ Done  |
+| 5 | Setup Kubernetes cluster | ⬜ Upcoming |
+| 6 | Deploy in Kubernetes | ⬜ Upcoming |
+| 7 | Deploy using Helm Charts | ⬜ Upcoming |
+| 8 | Setup GitOps with ArgoCD | ⬜ Upcoming |
+| 9 | Setup observability stack | ⬜ Upcoming |
+| 10 | Configure dashboards & alerts | ⬜ Upcoming |
 
 ---
 
