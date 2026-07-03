@@ -56,12 +56,11 @@ Check the [Project Roadmap](#project-roadmap) to see where things currently stan
 | 2 | Containerise REST API | ✅ Done |
 | 3 | Setup one-click local development setup | ✅ Done  |
 | 4 | Setup a CI pipeline | ✅ Done  |
-| 5 | Setup Kubernetes cluster | ⬜ Upcoming |
-| 6 | Deploy in Kubernetes | ⬜ Upcoming |
-| 7 | Deploy using Helm Charts | ⬜ Upcoming |
-| 8 | Setup GitOps with ArgoCD | ⬜ Upcoming |
-| 9 | Setup observability stack | ⬜ Upcoming |
-| 10 | Configure dashboards & alerts | ⬜ Upcoming |
+| 5 | Deploy in Kubernetes | ⬜ Upcoming |
+| 6 | Deploy using Helm Charts | ⬜ Upcoming |
+| 7 | Setup GitOps with ArgoCD | ⬜ Upcoming |
+| 8 | Setup observability stack | ⬜ Upcoming |
+| 9 | Configure dashboards & alerts | ⬜ Upcoming |
 
 ---
 
