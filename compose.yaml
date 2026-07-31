@@ -12,12 +12,8 @@ services:
       migrate:
         condition: service_completed_successfully
     env_file:
-      - .env
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3030/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      - path: ./.env
+        required: true
 
 
   postgres:
