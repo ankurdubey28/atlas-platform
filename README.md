@@ -28,7 +28,7 @@ Check the [Project Roadmap](#project-roadmap) to see where things currently stan
 
 ## Architecture
 
-![Atlas Platform Architecture](./docs/architecture.svg)
+![Atlas Platform Architecture](./docs/architecture.png)
 
 ---
 
