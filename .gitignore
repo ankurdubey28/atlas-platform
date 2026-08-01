@@ -2,3 +2,4 @@
 /.env
 /atlas-platform.iml
 K8s/manifest/secret.yaml
+helm/atlas-platform-chart/templates/secret.yaml
