@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: atlas-migrate-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+
+      containers:
+        - name: atlas-migrate
+          image: ankur2803/atlas-migrate:v1
+
+          envFrom:
+            - secretRef:
+                name: atlas-secrets
+
+          env:
+            - name: GOOSE_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  name: atlas-cm
+                  key: GOOSE_DRIVER
+
+            - name: GOOSE_MIGRATION_DIR
+              valueFrom:
+                configMapKeyRef:
+                  name: atlas-cm
+                  key: GOOSE_MIGRATION_DIR
+
+          args:
+            - "-dir"
+            - "$(GOOSE_MIGRATION_DIR)"
+            - "up"
+
+  backoffLimit: 4

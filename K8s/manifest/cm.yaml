@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: atlas-cm
+data:
+  ENV: "PROD"
+  PORT: ":3030"
+  GOOSE_DRIVER: "postgres"
+  GOOSE_MIGRATION_DIR: "/app/cmd/migrate/migrations"
+  VERSION: "v1"

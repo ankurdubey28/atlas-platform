@@ -34,17 +34,17 @@ Check the [Project Roadmap](#project-roadmap) to see where things currently stan
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Language** | Go |
-| **Router** | [Chi](https://github.com/go-chi/chi) |
-| **Database** | PostgreSQL |
-| **Migrations** | [Goose](https://github.com/pressly/goose) |
-| **Containerisation** | Docker *(upcoming)* |
-| **CI Pipeline** | GitHub Actions *(upcoming)* |
-| **Orchestration** | Kubernetes + Helm *(upcoming)* |
-| **GitOps** | ArgoCD *(upcoming)* |
-| **Observability** | Prometheus + Grafana *(upcoming)* |
+| Layer | Technology                                                               |
+|---|--------------------------------------------------------------------------|
+| **Language** | Go                                                                       |
+| **Router** | [Chi](https://github.com/go-chi/chi)                                     |
+| **Database** | PostgreSQL                                                               |
+| **Migrations** | [Goose](https://github.com/pressly/goose)                                |
+| **Containerisation** | Docker                                                                   |
+| **CI Pipeline** | GitHub Actions                                                           |
+| **Orchestration** | Kubernetes + Helm                                                        |
+| **GitOps** | ArgoCD *(upcoming)*                                                      |
+| **Observability** | Prometheus + Grafana + EFK (ElasticSearch , Fluentbit , Kibana) + Jaegar |
 
 ---
 
@@ -56,7 +56,7 @@ Check the [Project Roadmap](#project-roadmap) to see where things currently stan
 | 2 | Containerise REST API | ✅ Done |
 | 3 | Setup one-click local development setup | ✅ Done  |
 | 4 | Setup a CI pipeline | ✅ Done  |
-| 5 | Deploy in Kubernetes | ⬜ Upcoming |
+| 5 | Deploy in Kubernetes | ✅ Done |
 | 6 | Deploy using Helm Charts | ⬜ Upcoming |
 | 7 | Setup GitOps with ArgoCD | ⬜ Upcoming |
 | 8 | Setup observability stack | ⬜ Upcoming |

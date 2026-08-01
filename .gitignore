@@ -1,3 +1,4 @@
 /.idea
 /.env
 /atlas-platform.iml
+K8s/manifest/secret.yaml

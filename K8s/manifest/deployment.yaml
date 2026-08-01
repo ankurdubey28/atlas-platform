@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atlas-api-deployment
+  labels:
+    app: atlas-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: atlas-api
+  template:
+    metadata:
+      labels:
+        app: atlas-api
+    spec:
+      containers:
+        - name: atlas-api
+          image: ankur2803/atlas-api:v1
+          ports:
+            - containerPort: 3030
+          env:
+            - name: ENV
+              valueFrom:
+                configMapKeyRef:
+                  key: ENV
+                  name: atlas-cm
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: PORT
+                  name: atlas-cm
+            - name: VERSION
+              valueFrom:
+                configMapKeyRef:
+                  key: VERSION
+                  name: atlas-cm
+            - name: GOOSE_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  key: GOOSE_DRIVER
+                  name: atlas-cm
+            - name: GOOSE_MIGRATION_DIR
+              valueFrom:
+                configMapKeyRef:
+                  key: GOOSE_MIGRATION_DIR
+                  name: atlas-cm
+          envFrom:
+            - secretRef:
+                name: atlas-secrets
