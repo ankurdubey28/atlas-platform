@@ -34,17 +34,17 @@ Check the [Project Roadmap](#project-roadmap) to see where things currently stan
 
 ## Tech Stack
 
-| Layer | Technology                                                               |
-|---|--------------------------------------------------------------------------|
-| **Language** | Go                                                                       |
-| **Router** | [Chi](https://github.com/go-chi/chi)                                     |
-| **Database** | PostgreSQL                                                               |
-| **Migrations** | [Goose](https://github.com/pressly/goose)                                |
-| **Containerisation** | Docker                                                                   |
-| **CI Pipeline** | GitHub Actions                                                           |
-| **Orchestration** | Kubernetes + Helm                                                        |
-| **GitOps** | ArgoCD *(upcoming)*                                                      |
-| **Observability** | Prometheus + Grafana + EFK (ElasticSearch , Fluentbit , Kibana) + Jaegar |
+| Layer | Technology                                              |
+|---|---------------------------------------------------------|
+| **Language** | Go                                                      |
+| **Router** | [Chi](https://github.com/go-chi/chi)                    |
+| **Database** | PostgreSQL                                              |
+| **Migrations** | [Goose](https://github.com/pressly/goose)               |
+| **Containerisation** | Docker                                                  |
+| **CI Pipeline** | GitHub Actions                                          |
+| **Orchestration** | Kubernetes + Helm                                       |
+| **GitOps** | ArgoCD *(upcoming)*                                     |
+| **Observability** | Grafana Ecosystem (Prometheus + Loki + Tempo + Grafana) |
 
 ---
 
