@@ -130,7 +130,7 @@ jobs:
       - name: Update migration Helm tag
         if: needs.changes.outputs.migration == 'true' || github.event_name=='workflow_dispatch'
         run: |
-          yq -i '.images.migration.tag = "${{ github.run_id }}"' \
+          yq -i '.images.migrate.tag = "${{ github.run_id }}"' \
             helm/atlas-platform-chart/values.yaml
 
       - name: Commit and Push changes made to values.yaml
