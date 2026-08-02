@@ -58,7 +58,7 @@ Check the [Project Roadmap](#project-roadmap) to see where things currently stan
 | 4 | Setup a CI pipeline | ✅ Done  |
 | 5 | Deploy in Kubernetes | ✅ Done |
 | 6 | Deploy using Helm Charts | ✅ Done |
-| 7 | Setup GitOps with ArgoCD | ⬜ Upcoming |
+| 7 | Setup GitOps with ArgoCD | ✅ Done |
 | 8 | Setup observability stack | ⬜ Upcoming |
 | 9 | Configure dashboards & alerts | ⬜ Upcoming |
 
