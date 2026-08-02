@@ -1,10 +1,11 @@
 images:
   api:
     repository: ankur2803/atlas-api
-    tag: "v1"
+    tag: "30739930066"
     pullPolicy: IfNotPresent
-
   migrate:
     repository: ankur2803/atlas-migrate
     tag: "v1"
     pullPolicy: IfNotPresent
+  migration:
+    tag: "30739930066"
