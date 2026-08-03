@@ -6,7 +6,13 @@ spec:
   template:
     spec:
       restartPolicy: Never
-
+      initContainers:
+        - name: postgres-ready
+          image: postgres:alpine
+          command:
+            - sh
+            - -c
+            - until pg_isready -h postgres -p 5432; do sleep 2; done
       containers:
         - name: atlas-migrate
           image: ankur2803/atlas-migrate:v1

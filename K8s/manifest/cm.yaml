@@ -8,3 +8,4 @@ data:
   GOOSE_DRIVER: "postgres"
   GOOSE_MIGRATION_DIR: "/app/cmd/migrate/migrations"
   VERSION: "v1"
+

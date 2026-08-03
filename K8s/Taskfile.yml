@@ -1,0 +1,86 @@
+version: "3"
+
+vars:
+  PLATFORM: linux/amd64
+  IMAGE_NAME: atlas-platform
+  CONTAINER_NAME: atlas-platform
+  MANIFEST_DIR: ./manifest
+  TAG: 1.0.0
+
+tasks:
+  spin-up-cluster:
+    desc: spin up 4 node cluster using Minikube [1-> control Plane , 3-> worker nodes] and label them as per architecture.png
+    cmd: | 
+      minikube start --nodes 4 &&
+      kubectl label node minikube-m02 workload=app
+      kubectl label node minikube-m03 workload=db
+      kubectl label node minikube-m04 workload=dependent
+
+  apply-configmap:
+    desc: Apply ConfigMap
+    cmd: kubectl apply -f {{.MANIFEST_DIR}}/cm.yaml
+
+  apply-secret:
+    desc: Apply Kubernetes Secret
+    cmd: kubectl apply -f {{.MANIFEST_DIR}}/secret.yaml
+
+  apply-postgres:
+    desc: Apply PostgreSQL Service and StatefulSet
+    cmd: kubectl apply -f {{.MANIFEST_DIR}}/statefulset.yaml
+
+  apply-k8s-migrations:
+    desc: Run database migrations in Kubernetes
+    cmds:
+      - kubectl apply -f {{.MANIFEST_DIR}}/job.yaml
+
+  apply-deployment:
+    desc: Apply Atlas API Deployment
+    cmd: kubectl apply -f {{.MANIFEST_DIR}}/deployment.yaml
+
+  apply-ingress:
+    desc: Apply Atlas API Ingress
+    cmd: kubectl apply -f {{.MANIFEST_DIR}}/ingress.yaml
+
+  add-ingress-controller:
+    desc: Add official minikube ingress controller
+    cmd: |
+      minikube addons enable ingress
+
+  port-forward-ingress:
+    desc: Port-forward the ingress controller to localhost:8080.
+    cmd: |
+      kubectl port-forward \
+        -n ingress-nginx \
+        service/ingress-nginx-controller \
+        8080:80
+
+
+  deploy:
+      desc: Deploy the complete Atlas platform to Kubernetes
+      cmds:
+        - task: spin-up-cluster
+        - task: apply-configmap
+        - task: apply-secret
+        - task: apply-postgres
+        - task: apply-k8s-migrations
+        - task: apply-deployment
+        - task: apply-ingress
+        - task: add-ingress-controller
+        - task: port-forward-ingress
+
+  destroy:
+    desc: Remove all K8s objects and delete the cluster
+    cmd: minikube delete
+
+
+
+
+
+
+
+
+
+
+
+
+

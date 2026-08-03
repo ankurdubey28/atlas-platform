@@ -27,6 +27,8 @@ spec:
       labels:
         app: postgres
     spec:
+      nodeSelector:
+        workload: db
       containers:
         - name: postgres
           image: postgres:18
