@@ -5,6 +5,6 @@ images:
     pullPolicy: IfNotPresent
   migrate:
     repository: ankur2803/atlas-migrate
-    tag: "v1"
+    tag: "30739930066"
     pullPolicy: IfNotPresent
 
