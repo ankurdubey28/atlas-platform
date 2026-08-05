@@ -1,3 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: atlas-api-svc
+  labels:
+    app: atlas-svc
+spec:
+  selector:
+    app: atlas-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3030
+  type: ClusterIP
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,9 +31,11 @@ spec:
       labels:
         app: atlas-api
     spec:
+      nodeSelector:
+        workload: app
       containers:
         - name: atlas-api
-          image: {{.Values.images.api.repository}}:{{.Values.images.api.tag}}
+          image: "ghcr.io/ankurdubey28/atlas-api:{{ .Values.images.migrate.tag }}"
           ports:
             - containerPort: 3030
           env:
