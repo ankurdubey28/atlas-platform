@@ -6,7 +6,7 @@ This directory contains the GitHub Actions workflow for Atlas Platform.
 
 | File | Purpose |
 |---|---|
-| `workflows/ci.yml` | Runs CI checks, builds Docker images, pushes images to GHCR, and updates Helm image tags |
+| `workflows/ci.yml` | Runs CI checks, builds and scans Docker images, pushes images to GHCR, and updates Helm image tags |
 
 ## When It Runs
 
@@ -42,7 +42,7 @@ These outputs are used by later jobs to decide which Docker images need to be re
 
 ### 2. Build And Test
 
-The `build-test` job validates the Go project.
+The `build-test-api` job validates the Go project.
 
 It does the following:
 
@@ -56,11 +56,11 @@ It does the following:
 
 If this job fails, Docker images are not pushed.
 
-### 3. Build And Push Images
+### 3. Build, Scan, And Push Images
 
-The `push` job builds and pushes Docker images to GitHub Container Registry.
+The `build-scan-push-api` and `build-scan-push-migrate` jobs build, scan, and push Docker images to GitHub Container Registry.
 
-It pushes:
+They build these images:
 
 | Image | Docker target | Tag |
 |---|---|---|
@@ -71,17 +71,19 @@ The API image is pushed when API-related files change.
 
 The migration image is pushed when migration-related files change.
 
-On a manual workflow run, both images can be built and pushed.
+On a manual workflow run, both images are built, scanned, and pushed.
+
+Before pushing an image, the workflow loads the Docker build locally and runs Trivy against it. The scan fails the job on unfixed `CRITICAL` OS or library vulnerabilities.
 
 ### 4. Update Helm Values
 
-The `update-helm` job updates image tags in:
+The `update-helm` job runs after the image jobs and updates image tags in:
 
 ```text
 helm/atlas-platform-chart/values.yaml
 ```
 
-It updates:
+It updates only the tags for image jobs that completed successfully:
 
 | Helm value | Source |
 |---|---|
@@ -111,7 +113,7 @@ The workflow does not directly deploy to Kubernetes.
 Instead, it:
 
 1. Validates the application
-2. Builds and pushes versioned container images
+2. Builds, scans, and pushes versioned container images
 3. Updates Helm chart image tags
 4. Pushes the Helm values change
 
