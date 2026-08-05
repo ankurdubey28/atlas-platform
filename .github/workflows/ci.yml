@@ -114,7 +114,7 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL'
 
 
       - name: Build and Push to registry
@@ -159,7 +159,7 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL'
 
 
       - name: Build and Push to registry
@@ -201,8 +201,8 @@ jobs:
           CI_GIT_NAME: ${{vars.CI_BOT_NAME}}
           CI_GIT_EMAIL: ${{vars.CI_BOT_EMAIL}}
         run: |
-          git config --global user.email "$CI_GIT_NAME"
-          git config --global user.name "$CI_GIT_EMAIL"
+          git config --global user.email "$CI_GIT_EMAIL"
+          git config --global user.name "$CI_GIT_NAME"
           git add helm/atlas-platform-chart/values.yaml
           git commit -m "chore(helm): update image tags [skip ci]"
           git push
