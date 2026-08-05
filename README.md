@@ -173,19 +173,11 @@ task clean
 
 ### Kubernetes Manifests
 
-Make sure your local Kubernetes cluster is running and your `kubectl` context points to it. Create your own Kubernetes Secret manifest from `K8s/manifest/secrets.example.yaml`, then deploy the platform using the raw Kubernetes manifests:
-
-```bash
-task deploy
-```
+For raw Kubernetes manifest setup and deployment directions, go to the `K8s` directory and read `K8s/INFO.md`.
 
 ### Helm
 
-Create your own Kubernetes Secret values from the example secret manifest before installing the chart. Then deploy the platform using Helm:
-
-```bash
-helm upgrade --install atlas-platform ./helm/atlas-platform-chart
-```
+For Helm chart setup, configuration, and deployment directions, go to the `helm` directory and read `helm/INFO.md`.
 
 ---
 
