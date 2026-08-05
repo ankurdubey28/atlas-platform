@@ -1,0 +1,20 @@
+version: "3"
+
+tasks:
+  spin-up-cluster:
+    desc: spin up 4 node cluster using Minikube [1-> control Plane , 3-> worker nodes] and label them as per architecture.png
+    cmd: |
+      minikube start --nodes 4 &&
+      kubectl label node minikube-m02 workload=app
+      kubectl label node minikube-m03 workload=db
+      kubectl label node minikube-m04 workload=dependent
+
+  create-atlas-ns:
+      desc: create namespace atlas
+      cmd: kubectl create ns atlas
+
+  setup:
+    desc: initial setup before helm installs chart
+    cmds:
+      - task: spin-up-cluster
+      - task: create-atlas-ns
