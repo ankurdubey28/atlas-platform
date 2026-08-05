@@ -16,6 +16,10 @@ tasks:
       kubectl label node minikube-m03 workload=db
       kubectl label node minikube-m04 workload=dependent
 
+  create-atlas-ns:
+      desc: create namespace atlas
+      cmd: kubectl create ns atlas
+
   apply-configmap:
     desc: Apply ConfigMap
     cmd: kubectl apply -f {{.MANIFEST_DIR}}/cm.yaml
